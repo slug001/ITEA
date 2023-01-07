@@ -1,0 +1,234 @@
+//2-----------
+#include <stdio.h>
+int main(){
+    int mile;
+    float km;
+
+    while(scanf("%d",&mile)!=EOF){
+        km=mile*1.6;
+        printf("%.1f\n",km);
+    }
+
+    return 0;
+}
+//3-----------
+# include <stdio.h>
+
+int main(){
+    int x,y;
+    while(scanf("%d %d",&x,&y)!=EOF){
+        if((x*x+y*y)<=10000){
+            printf("inside\n");
+        }else{
+            printf("outside\n");
+        }
+    }
+    return 0;
+}
+//4-----------
+#include <stdio.h>
+
+int main (){
+    int inHour,inMin,outHour,outMin;
+    int in,out,diff,money;
+    scanf("%d %d",&inHour,&inMin);
+    scanf("%d %d",&outHour,&outMin);
+    in=inHour*60+inMin;
+    out=outHour*60+outMin;
+    if(out<in){
+        out+=24*60;
+    }
+    diff=out-in;
+    if(diff<=120){
+        money=(diff/30)*30;
+    }else if(diff<=240){
+        money=((diff-120)/30)*40+120;
+    }else{
+        money=((diff-240)/30)*60+280;
+    }
+    printf("%d\n",money);
+    return 0;
+
+}
+//5-----------
+#include <stdio.h>
+
+void helf(int time,int num){
+    if(time>8){
+    }else{
+        helf(++time,num/2);
+        printf("%d",num%2);
+    }
+
+}
+
+int main(){
+    int num;
+    scanf("%d",&num);
+    if(num<0){
+        num+=256;
+    }
+    helf(1,num);
+    printf("\n");
+    return 0;
+}
+//6-----------
+#include <stdio.h>
+
+int main (){
+    int month;
+    while(scanf("%d",&month)!=EOF){
+        switch(month){
+            case 3:
+            case 4:
+            case 5:
+                printf("Spring\n");
+                break;
+            case 6:
+            case 7:
+            case 8:
+                printf("Summer\n");
+                break;
+            case 9:
+            case 10:
+            case 11:
+                printf("Autumn\n");
+                break;
+            case 12:
+            case 1:
+            case 2:
+                printf("Winter\n");
+                break;
+        }
+    }
+
+    return 0;
+}
+//7-----------
+#include <stdio.h>
+
+int main(){
+    int runTime,real_1,real_2,unreal_1,unreal_2;
+    char notation;
+    scanf("%d ",&runTime);
+    for(int i=0;i<runTime;i++){
+        scanf(" %c %d %d %d %d",&notation,&real_1,&unreal_1,&real_2,&unreal_2);
+        switch(notation){
+            case '+':
+                printf("%d %d\n",real_1+real_2,unreal_1+unreal_2);
+                break;
+            case '-':
+                printf("%d %d\n",real_1-real_2,unreal_1-unreal_2);
+                break;
+            case '*':
+                printf("%d %d\n",real_1*real_2-unreal_1*unreal_2,real_1*unreal_2+real_2*unreal_1);
+                break;
+        }
+    }
+
+    return 0;
+}
+
+//8-----------
+#include <stdio.h>
+#include <math.h>
+
+enum Style{Composite,Prime};
+
+int main(){
+    int num,numSqrt;
+
+    while(scanf("%d",&num)!=EOF){
+
+        enum Style numStyle=Prime;
+
+        if(num==1||num==0){
+            printf("NO\n");
+            continue;
+        }
+        numSqrt=sqrt(num);
+        for(int i=2;i<=numSqrt;i++){
+            if(num%i==0){
+                numStyle=Composite;
+                break;
+            }
+        }
+        if(numStyle==Composite){
+            printf("NO\n");
+        }else{
+            printf("YES\n");
+        }
+    }
+
+    return 0;
+}
+//9-----------
+#include <stdio.h>
+
+
+int main(){
+    int head=3,tail;
+    while(scanf("%d",&tail)!=EOF){
+        if(tail==3){
+            printf("3\n");
+            continue;
+        }
+    //§À¦V¤º§ì¨ì3ªº­¿¼Æ
+        if(tail%3){
+            tail-=tail%3;
+        }
+
+        int total=(head+tail)*((tail-head)/3+1)/2;
+        printf("%d\n",total);
+    }
+    return 0;
+}
+//10-----------
+#include <stdio.h>
+
+//輾轉相除法又稱歐基里德算法
+int Euclidean(int big,int small){
+    if(big%small){
+        return Euclidean(small,big%small);
+    }else{
+        return small;
+    }
+}
+
+int main(){
+    //common 公因數
+    int num1,num2,common;
+    scanf("%d %d",&num1,&num2);
+    if(num1>=num2){
+        common=Euclidean(num1,num2);
+    }else{
+        common=Euclidean(num2,num1);
+    }
+    printf("%d\n",common);
+    return 0;
+
+}
+//11----------
+# include <stdio.h>
+
+int main (){
+    int row,column;
+    while(scanf("%d %d",&row,&column)!=EOF){
+        int Array[row][column];
+        for(int i=0;i<row;i++){
+            for (int j=0;j<column;j++){
+                scanf("%d",&Array[i][j]);
+            }
+        }
+        for (int i=0;i<column;i++){
+            for(int j=0;j<row;j++){
+                printf("%d",Array[j][i]);
+                if(j!=row-1){
+                    printf(" ");
+                }
+            }
+            printf("\n");
+        }
+    }
+    return ;
+}
